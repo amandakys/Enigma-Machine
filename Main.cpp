@@ -27,6 +27,12 @@ int main(int argc, char **argv) {
 
     cout << endl;
 
+    delete reflector;
+    delete plugboard;
+    for (int i = numRotors - 1; i >= 0; i--) {
+        delete rotors[i];
+    }
+
     return 0;
 }
 
