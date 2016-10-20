@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
     Axle* axle = new Axle(numRotors, rotors);
 
     char in = '\0';
-    while (cin >> in) {
+    while (cin >> ws >> in) {
         cout << plugboard->encodeOne(axle->encodeOneRL(reflector->encodeOne(axle->encodeOneLR((plugboard->encodeOne(in))))));
     }
 
