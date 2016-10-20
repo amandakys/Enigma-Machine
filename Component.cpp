@@ -58,4 +58,3 @@ string Component::encode(string in) {
     }
     return out;
 }
-

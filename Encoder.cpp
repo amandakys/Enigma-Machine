@@ -17,19 +17,17 @@ Encoder::Encoder(Plugboard* plugboard, Axle* axle, Reflector* reflector){
 string Encoder::readText() {
     string in;
     string out = "";
-    while (cin) {
+    while (!cin.eof()) {
         cin >> ws >> in;
         out += in;
-        out += " ";
+        //out += " ";
     }
-    out.pop_back();
-    size_t last = out.find_last_of(" ");
-    out = out.substr(0, last);
+    // out.pop_back();
+    // size_t last = out.find_last_of(" ");
+    out = out.substr(0, out.length() - in.length());
     return out;
 }
 
 string Encoder::encode() {
     return reflector->encode(axle->encode(plugboard->encode(inputText)));
 }
-
-

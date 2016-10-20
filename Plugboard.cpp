@@ -50,7 +50,6 @@ void Plugboard::readfile() {
     }
 
     this->values[numValues - 1] = atoi((contents).c_str());
-
 }
 /*void Plugboard::readfile() {
     int numValues = 52; //should only return this if never enters if statement
@@ -67,8 +66,8 @@ void Plugboard::readfile() {
 
 void Plugboard::generateMap() {
     for (int i = 0; i < this->numValues; i+=2) {
-        this->map[values[i]] = values[i+1];
-        this->map[values[i+1]] = values[i];
+        this->valueMap[values[i]] = values[i+1];
+        this->valueMap[values[i+1]] = values[i];
     }
 }
 
@@ -76,13 +75,14 @@ char Plugboard::encodeOne(char in) {
     //we should have a look up table for alphabet conversion to numbers available to all encoding components
     char out;
     int lookup = this->charToInt(in);
-    if (map.find(lookup) == map.end()) {
+    map<int, int>::iterator it = valueMap.find(lookup);
+    if (it != valueMap.end()) {
+        int result = valueMap[lookup];
+        out = this->intToChar(result);
+    } else {
         //lookup value is not in map
         //value is mapped to itself
-        out = (char) toupper(in);
-    } else {
-        int result = map[lookup];
-        out = this->intToChar(result);
+        out = in;
     }
     return out;
 }
@@ -121,5 +121,3 @@ void Plugboard::printValues() {
 }
 
 Plugboard::Plugboard() {}
-
-

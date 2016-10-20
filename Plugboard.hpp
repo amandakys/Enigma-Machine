@@ -23,7 +23,7 @@ public:
 protected:
     string filename;
     int numValues;
-    std::map <int, int> map;
+    map<int, int> valueMap;
     void readfile();
     void generateMap();
     virtual char encodeOne(char in);

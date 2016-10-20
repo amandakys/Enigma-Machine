@@ -27,13 +27,11 @@ int main(int argc, char **argv) {
     int numRotors = argc - 2;
     char* pbFilename = argv[numRotors + 1];
     Reflector* reflector = new Reflector();
-    cout << "here" << endl;
     Plugboard* plugboard = new Plugboard(pbFilename);
-    cout << "here" << endl;
     Rotor** rotors = new Rotor*[numRotors];
 
     for (int i = 0; i < numRotors; i++) {
-        rotors[i] = new Rotor (argv[i+1]);
+         rotors[i] = new Rotor (argv[i+1]);
     }
     Axle* axle = new Axle(numRotors, rotors);
     Encoder* encoder = new Encoder(plugboard, axle, reflector);
