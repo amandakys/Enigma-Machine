@@ -34,10 +34,18 @@ int main(int argc, char **argv) {
          rotors[i] = new Rotor (argv[i+1]);
     }
     Axle* axle = new Axle(numRotors, rotors);
-    Encoder* encoder = new Encoder(plugboard, axle, reflector);
-    string encrypted = encoder->encode();
 
-    cout << encrypted << endl;
+    char in = '\0';
+    while (cin >> in) {
+        cout << plugboard->encodeOne(axle->encodeOneRL(reflector->encodeOne(axle->encodeOneLR((plugboard->encodeOne(in))))));
+    }
+
+    cout << endl;
+
+//    Encoder* encoder = new Encoder(plugboard, axle, reflector);
+//    string encrypted = encoder->encode();
+//
+//    cout << encrypted << endl;
     return 0;
 }
 

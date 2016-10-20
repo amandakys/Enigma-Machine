@@ -31,6 +31,9 @@ void Plugboard::readfile() {
     if (pbFile.is_open()) {
         getline(pbFile, contents);
         pbFile.close();
+    } else {
+        cout << "failure opening file" << endl;
+        exit(EXIT_FAILURE);
     }
 
     string token;

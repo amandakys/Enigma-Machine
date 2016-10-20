@@ -17,9 +17,9 @@ Encoder::Encoder(Plugboard* plugboard, Axle* axle, Reflector* reflector){
 string Encoder::readText() {
     string in;
     string out = "";
-    while (!cin.eof()) {
-        cin >> ws >> in;
-        out += in;
+    while (cin >> ws >> out) {
+//        cin >> ws >> in;
+//        out += in;
         //out += " ";
     }
     // out.pop_back();
