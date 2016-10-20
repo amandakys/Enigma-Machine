@@ -8,9 +8,6 @@
 #include <map>
 #include "Plugboard.hpp"
 
-/*Plugboard::Plugboard(FILE *pbFile) {
-    this->pbFile = pbFile;
-}*/
 using namespace std;
 
 Plugboard::Plugboard(string filename) {
