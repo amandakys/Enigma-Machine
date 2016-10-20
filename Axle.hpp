@@ -13,18 +13,12 @@ public:
     Axle(int numRotors, Rotor** rotors);
     Rotor** rotors;
 
-    string encodeLR(string in);
-    string encodeRL(string in);
-
     char encodeOneRL(char in);
     char encodeOneLR(char in);
 
 private:
     //virtual char encodeOne(char in);
     int numRotors;
-
-
-
     void rotateRotors();
 
 };

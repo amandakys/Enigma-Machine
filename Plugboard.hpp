@@ -17,9 +17,7 @@ class Plugboard : public Component {
 public:
     Plugboard(string filename);
     Plugboard();
-    void printValues();
     int* values;
-
     virtual char encodeOne(char in);
 
 protected:

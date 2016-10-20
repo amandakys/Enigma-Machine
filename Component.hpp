@@ -11,19 +11,13 @@
 using namespace std;
 class Component {
 public:
-
     Component();
-
-    string encode(string in);
 protected:
     std::map<int, char> intCharMap;
     char intToChar(int i);
     int charToInt(char c);
     void generateIntCharMap();
     virtual char encodeOne(char in);
-
-
-    //string encodeWord(string in);
 
 };
 

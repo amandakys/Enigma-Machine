@@ -1,27 +1,12 @@
 // skeleton C++ file, you will need to edit this and other files to implement your enigma machine
 #include <stdexcept>
 #include <iostream>
-#include <fstream>
-#include <unordered_map>
 #include "Plugboard.hpp"
-#include "Encoder.hpp"
 #include "Reflector.hpp"
+#include "Rotor.hpp"
+#include "Axle.hpp"
 
 using namespace std;
-
-/*template <typename T>
-T getFirst(unordered_map<T, T> &map, T second);
-
-template <typename T>
-T getFirst(unordered_map<T, T> &map, T second) {
-    for (auto it = map.begin(); it != map.end(); it++) {
-        if ((*it).second == second) {
-            return (*it).first;
-        }
-    }
-
-    return second;
-}*/
 
 int main(int argc, char **argv) {
     int numRotors = argc - 2;
@@ -42,30 +27,6 @@ int main(int argc, char **argv) {
 
     cout << endl;
 
-//    Encoder* encoder = new Encoder(plugboard, axle, reflector);
-//    string encrypted = encoder->encode();
-//
-//    cout << encrypted << endl;
     return 0;
 }
 
-/*string readText() {
-    string in;
-    string out = "";
-    while (cin) {
-        cin >> ws >> in;
-        out += in;
-        out += " ";
-    }
-    out.pop_back();
-    size_t last = out.find_last_of(" ");
-    out = out.substr(0, last);
-    return out;
-}
-  unordered_map<char, char> map;
-
-    map.insert(make_pair<char, char>('a', 'b'));
-    map.insert(make_pair<char, char>('c', 'd'));
-
-    cout << getFirst(map, 'd') << endl;
-*/

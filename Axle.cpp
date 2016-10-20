@@ -28,7 +28,6 @@ char Axle::encodeOneLR(char in) {
     char current = in;
     for (int i = 0; i < this->numRotors; i++) {
         current = rotors[i]->encodeOneLR(current);
-        //cout << current << endl;
     }
 
     return current;
@@ -38,24 +37,9 @@ char Axle::encodeOneRL(char in) {
     char current = in;
     for (int i = numRotors - 1; i >= 0; i--) {
         current = rotors[i]->encodeOneRL(current);
-//        cout << current << endl;
     }
     rotateRotors();
     return current;
 }
 
-string Axle::encodeLR(string in) {
-    string out = "";
-    for (char &c : in) {
-        out += encodeOneLR(c);
-    }
-    return out;
-}
 
-string Axle::encodeRL(string in) {
-    string out = "";
-    for (char &c : in) {
-        out += encodeOneRL(c);
-    }
-    return out;
-}

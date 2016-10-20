@@ -3,7 +3,6 @@
 //
 
 #include <fstream>
-#include <iostream>
 #include "Rotor.hpp"
 
 Rotor::Rotor(string filename) {
@@ -28,7 +27,6 @@ void Rotor::readfile() {
     string token;
     string delim = " ";
     size_t pos = 0;
-    //contents = "23 6 9 5 21 0 18 8 1 11 24 4 14 20 12 3 10 25 7 17";
     for (int i = 0; i < 26; i++) {
         pos = contents.find(delim);
         if (pos != string::npos) {
@@ -100,9 +98,5 @@ char Rotor::encodeOne(char in) {
     return '\0';
 }
 
-void Rotor::printValues() {
-    for (int i = 0; i < 26; i++) {
-        cout << this->values[i] << endl;
-    }
-}
+
 

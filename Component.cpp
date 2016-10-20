@@ -33,7 +33,6 @@ int Component::charToInt(char c) {
         //lowercase
         cout << "Only upper case letters allowed for input" << endl;
         exit(EXIT_FAILURE);
-        i -=97;
     } else if (i >= 65 && i <= 90){
         //uppercase
         i -= 65;
@@ -47,20 +46,3 @@ char Component::encodeOne(char in) {
     return 0;
 }
 
-/*string Component::encodeWord(string in) {
-    string out = "";
-    for (char &c : in) {
-        out += encodeOne(c);
-    }
-    return out;
-}*/
-
-
-
-string Component::encode(string in) {
-    string out = "";
-    for (char &c : in) {
-        out += encodeOne(c);
-    }
-    return out;
-}

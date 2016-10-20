@@ -21,8 +21,6 @@ public:
 
     int getRotations();
 
-    virtual char encodeOne(char in);
-
     char encodeOneLR(char in);
 
     char encodeOneRL(char in);
@@ -37,7 +35,7 @@ private:
 
     void generateInverse();
 
-    void printValues();
+    virtual char encodeOne(char in);
 };
 
 
