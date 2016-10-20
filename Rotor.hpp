@@ -14,16 +14,30 @@ public:
     Rotor();
 
     Rotor(string filename);
+
     void rotate();
+
     void resetRotations();
+
     int getRotations();
+
     virtual char encodeOne(char in);
+
+    char encodeOneLR(char in);
+
+    char encodeOneRL(char in);
+
 private:
     int numRotations;
     string filename;
-    int* values;
+    int *values;
+    int* inverse;
+
     void readfile();
 
+    void generateInverse();
+
+    void printValues();
 };
 
 

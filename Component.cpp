@@ -51,6 +51,8 @@ char Component::encodeOne(char in) {
     return out;
 }*/
 
+
+
 string Component::encode(string in) {
     string out = "";
     for (char &c : in) {

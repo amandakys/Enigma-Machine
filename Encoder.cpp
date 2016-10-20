@@ -29,5 +29,13 @@ string Encoder::readText() {
 }
 
 string Encoder::encode() {
-    return reflector->encode(axle->encode(plugboard->encode(inputText)));
+    string out;
+    for (char& c : inputText) {
+//        cout << plugboard->encodeOne(c) << endl;
+//        cout << axle->encodeOneLR((plugboard->encodeOne(c))) << endl;
+//        cout << reflector->encodeOne(axle->encodeOneLR((plugboard->encodeOne(c)))) << endl;
+        out += plugboard->encodeOne(axle->encodeOneRL(reflector->encodeOne(axle->encodeOneLR((plugboard->encodeOne(c))))));
+    }
+
+    return out;
 }

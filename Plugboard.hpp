@@ -20,13 +20,14 @@ public:
     void printValues();
     int* values;
 
+    virtual char encodeOne(char in);
+
 protected:
     string filename;
     int numValues;
     map<int, int> valueMap;
     void readfile();
     void generateMap();
-    virtual char encodeOne(char in);
 };
 
 

@@ -3,13 +3,16 @@
 //
 
 #include <fstream>
+#include <iostream>
 #include "Rotor.hpp"
 
 Rotor::Rotor(string filename) {
     this->filename = filename;
     this->values = new int[26];
+    this->inverse = new int[26];
     generateIntCharMap();
     readfile();
+    generateInverse();
 }
 
 void Rotor::readfile() {
@@ -40,6 +43,12 @@ void Rotor::readfile() {
     this->values[25] = atoi((contents).c_str());
 }
 
+void Rotor::generateInverse() {
+    for (int i = 0; i < 26; i++) {
+        this->inverse[values[i]] = i;
+    }
+}
+
 void Rotor::rotate() {
     int save = values[0];
     for (int i = 0; i < 25; i++) {
@@ -47,7 +56,7 @@ void Rotor::rotate() {
         if (r - 1 < 0) {
             values[i] = 25;
         } else {
-            values[i] = r;
+            values[i] = r - 1;
         }
     }
     if (save - 1 < 0) {
@@ -55,11 +64,12 @@ void Rotor::rotate() {
     } else {
         values[25] = save - 1;
     }
+    generateInverse();
 
     this->numRotations++;
 }
 
-char Rotor::encodeOne(char in) {
+char Rotor::encodeOneLR(char in) {
     char out;
     int lookup = this->charToInt(in);
     int result = this->values[lookup];
@@ -67,6 +77,13 @@ char Rotor::encodeOne(char in) {
     return out;
 }
 
+char Rotor::encodeOneRL(char in) {
+    char out;
+    int lookup = this->charToInt(in);
+    int result = inverse[lookup];
+    out = this->intToChar(result);
+    return out;
+}
 void Rotor::resetRotations() {
     this->numRotations = 0;
 }
@@ -78,3 +95,14 @@ int Rotor::getRotations() {
 Rotor::Rotor() {
 
 }
+
+char Rotor::encodeOne(char in) {
+    return '\0';
+}
+
+void Rotor::printValues() {
+    for (int i = 0; i < 26; i++) {
+        cout << this->values[i] << endl;
+    }
+}
+
