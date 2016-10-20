@@ -2,7 +2,6 @@
 // Created by Andi Koh on 19/10/2016.
 //
 
-#include <iostream>
 #include "Axle.hpp"
 
 Axle::Axle(int numRotors, Rotor **rotors) {
