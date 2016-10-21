@@ -9,6 +9,7 @@ Rotor::Rotor(string filename) {
     this->filename = filename;
     this->values = new int[26];
     this->inverse = new int[26];
+    this->numRotations = 0;
     generateIntCharMap();
     readfile();
     generateInverse();
@@ -97,6 +98,3 @@ Rotor::Rotor() {
 char Rotor::encodeOne(char in) {
     return '\0';
 }
-
-
-

@@ -22,6 +22,16 @@ int main(int argc, char **argv) {
 
     char in = '\0';
     while (cin >> ws >> in) {
+	// char pb = plugboard->encodeOne(in);
+	// char a1 = axle->encodeOneLR(pb);
+	// char r = reflector->encodeOne(a1);
+	// char a2 = axle->encodeOneRL(r);
+	// char pb2 = plugboard->encodeOne(a2);
+	// cout << pb;
+	// cout << a1;
+	// cout << r;
+	// cout << a2;
+	// cout << pb2;
         cout << plugboard->encodeOne(axle->encodeOneRL(reflector->encodeOne(axle->encodeOneLR((plugboard->encodeOne(in))))));
     }
 
@@ -29,10 +39,10 @@ int main(int argc, char **argv) {
 
     delete reflector;
     delete plugboard;
+    delete axle;
     for (int i = numRotors - 1; i >= 0; i--) {
         delete rotors[i];
     }
 
     return 0;
 }
-
