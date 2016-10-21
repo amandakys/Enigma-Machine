@@ -1,0 +1,15 @@
+//
+// Created by Andi Koh on 21/10/2016.
+//
+
+#ifndef CENIGMA_YSK115_UTILITIES_HPP
+#define CENIGMA_YSK115_UTILITIES_HPP
+
+#define NUMLETTERS 26
+#define ASCII_A 65
+#define ASCII_Z 90
+#define INPUT_A 0
+#define INPUT_Z 25
+#define FULL_ROTATION 25
+
+#endif //CENIGMA_YSK115_UTILITIES_HPP

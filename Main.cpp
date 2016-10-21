@@ -10,11 +10,13 @@ using namespace std;
 
 int main(int argc, char **argv) {
     int numRotors = argc - 2;
+    //plugboard file is always last argument
     char* pbFilename = argv[numRotors + 1];
     Reflector* reflector = new Reflector();
     Plugboard* plugboard = new Plugboard(pbFilename);
     Rotor** rotors = new Rotor*[numRotors];
 
+    //make array of rotors from rotor files
     for (int i = 0; i < numRotors; i++) {
          rotors[i] = new Rotor (argv[i+1]);
     }
@@ -22,17 +24,12 @@ int main(int argc, char **argv) {
 
     char in = '\0';
     while (cin >> ws >> in) {
-	// char pb = plugboard->encodeOne(in);
-	// char a1 = axle->encodeOneLR(pb);
-	// char r = reflector->encodeOne(a1);
-	// char a2 = axle->encodeOneRL(r);
-	// char pb2 = plugboard->encodeOne(a2);
-	// cout << pb;
-	// cout << a1;
-	// cout << r;
-	// cout << a2;
-	// cout << pb2;
-        cout << plugboard->encodeOne(axle->encodeOneRL(reflector->encodeOne(axle->encodeOneLR((plugboard->encodeOne(in))))));
+        char pb1 = plugboard->encodeOne(in);
+        char a1 = axle->encodeOneLR(pb1);
+        char r = reflector->encodeOne(a1);
+        char a2 = axle->encodeOneRL(r);
+        char pb2 = plugboard->encodeOne(a2);
+        cout << pb2;
     }
 
     cout << endl;

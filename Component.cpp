@@ -6,20 +6,23 @@
 #include <cstdlib>
 #include <iostream>
 #include "Component.hpp"
+#include "utilities.hpp"
 
 using namespace std;
 
 Component::Component() {
     generateIntCharMap();
 }
+
 void Component::generateIntCharMap() {
+    //used to relate ints 0 - 25 to chars A - Z
     char c = 'A';
-    for (int i = 0; i < 26; i++) {
+    for (int i = 0; i < NUMLETTERS; i++) {
         this->intCharMap[i] = (char) (c + i);
     }
 }
 char Component::intToChar(int i) {
-    if (i >= 0 && i <= 25) {
+    if (i >= INPUT_A && i <= INPUT_Z) {
         return this->intCharMap[i];
     } else {
         perror("invalid input integer");
@@ -29,13 +32,13 @@ char Component::intToChar(int i) {
 
 int Component::charToInt(char c) {
     int i = (int) c;
-    if (i >= 97 && i <= 122) {
+    if (i >= ASCII_A && i <= ASCII_Z){
+        //uppercase
+        i -= ASCII_A;
+    } else {
         //lowercase
         cout << "Only upper case letters allowed for input" << endl;
         exit(EXIT_FAILURE);
-    } else if (i >= 65 && i <= 90){
-        //uppercase
-        i -= 65;
     }
 
     return i;

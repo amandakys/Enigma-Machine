@@ -4,11 +4,12 @@
 
 #include <fstream>
 #include "Rotor.hpp"
+#include "utilities.hpp"
 
 Rotor::Rotor(string filename) {
     this->filename = filename;
-    this->values = new int[26];
-    this->inverse = new int[26];
+    this->values = new int[NUMLETTERS];
+    this->inverse = new int[NUMLETTERS];
     this->numRotations = 0;
     generateIntCharMap();
     readfile();
@@ -24,11 +25,12 @@ void Rotor::readfile() {
         getline(rotorFile, contents);
         rotorFile.close();
     }
-
+    //separate values from rotor file based on " "
+    //save into values array values[0..25]
     string token;
     string delim = " ";
     size_t pos = 0;
-    for (int i = 0; i < 26; i++) {
+    for (int i = 0; i < NUMLETTERS; i++) {
         pos = contents.find(delim);
         if (pos != string::npos) {
             token = contents.substr(0, pos);
@@ -38,37 +40,44 @@ void Rotor::readfile() {
             break;
         }
     }
-
-    this->values[25] = atoi((contents).c_str());
+    //need to manually insert last value
+    this->values[INPUT_Z] = atoi((contents).c_str());
 }
 
 void Rotor::generateInverse() {
-    for (int i = 0; i < 26; i++) {
+    //create inverse mapping for when value goes back through rotor
+    for (int i = 0; i < NUMLETTERS; i++) {
         this->inverse[values[i]] = i;
     }
 }
 
 void Rotor::rotate() {
-    int save = values[0];
-    for (int i = 0; i < 25; i++) {
-        int r = values[i + 1];
-        if (r - 1 < 0) {
-            values[i] = 25;
+    //save mapping of A
+    int save = values[INPUT_A];
+    for (int i = 0; i < INPUT_Z; i++) {
+        //for A - Y, new mapping is mapping of the next value - 1
+        int r = values[i + 1]; //calculate new mapping
+        if (r - 1 < INPUT_A) { //if new mapping is negative, must wrap around
+            values[i] = INPUT_Z; //-1 mapping equivalent to mapping to Z (25)
         } else {
             values[i] = r - 1;
         }
     }
-    if (save - 1 < 0) {
-        values[25] = 25;
+    //mapping of Z (25) is mapping of A - 1
+    //if negative then wrap around to Z
+    if (save - 1 < INPUT_A) {
+        values[INPUT_Z] = INPUT_Z;
     } else {
-        values[25] = save - 1;
+        values[INPUT_Z] = save - 1;
     }
+    //after every rotation, generate new inverse mapping
     generateInverse();
 
     this->numRotations++;
 }
 
 char Rotor::encodeOneLR(char in) {
+    //for first pass through rotors
     char out;
     int lookup = this->charToInt(in);
     int result = this->values[lookup];
@@ -77,6 +86,7 @@ char Rotor::encodeOneLR(char in) {
 }
 
 char Rotor::encodeOneRL(char in) {
+    //for return through rotors
     char out;
     int lookup = this->charToInt(in);
     int result = inverse[lookup];

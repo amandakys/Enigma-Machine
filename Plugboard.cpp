@@ -7,12 +7,13 @@
 #include <fstream>
 #include <map>
 #include "Plugboard.hpp"
+#include "utilities.hpp"
 
 using namespace std;
 
 Plugboard::Plugboard(string filename) {
     this->filename = filename;
-    this->values = new int[52];
+    this->values = new int[2*NUMLETTERS];
     this->numValues = 0;
     generateIntCharMap();
     this->readfile();
@@ -35,7 +36,7 @@ void Plugboard::readfile() {
     string token;
     string delim = " ";
     size_t pos = 0;
-    for (int i = 0; i < 52; i++) {
+    for (int i = 0; i < 2*NUMLETTERS; i++) {
         pos = contents.find(delim);
         if (pos != string::npos) {
             token = contents.substr(0, pos);
